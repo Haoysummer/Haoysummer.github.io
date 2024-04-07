@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>机器学习Lab01</title>
+    <link href="/2024/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0Lab01/"/>
+    <url>/2024/04/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0Lab01/</url>
+    
+    <content type="html"><![CDATA[<h2 id="DataSetcar1000"><a href="#DataSetcar1000" class="headerlink" title="DataSetcar1000"></a>DataSet<code>car1000</code></h2><p>这是一个关于汽车测评的数据集，类别变量为汽车的测评，（unacc，ACC，good，vgood）分别代表（不可接受，可接受，好，非常好），而6个属性变量分别为「买入价」，「维护费」，「车门数」，「可容纳人数」，「后备箱大小」，「安全性」。值得一提的是6个属性变量全部是<strong>有序</strong>类别变量：</p><ul><li>buying       v-high, high, med, low</li><li>maint        v-high, high, med, low</li><li>doors        2, 3, 4, 5-more</li><li>persons      2, 4, more</li><li>lug_boot     small, med, big</li><li>safety       low, med, high</li></ul><hr><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>决策树学习通常包括三个步骤：<strong>特征选择</strong>、<strong>决策树的生成</strong>和<strong>决策树的剪枝</strong>。</p><h3 id="算法选择"><a href="#算法选择" class="headerlink" title="算法选择"></a>算法选择</h3><p>常用的决策树算法有：<font color="cornflowerblue">ID3</font>(信息增益)、<font color="cornflowerblue">C4.5</font>(增益率)、<font color="cornflowerblue">CART</font>(基尼系数)，根据小组分工我选择了&#x3D;&#x3D;ID3算法&#x3D;&#x3D;进行划分选择。</p><p>决策树的剪枝算法包括<font color="cornflowerblue">预剪枝</font>和<font color="cornflowerblue">后剪枝</font>。</p><h3 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h3><p>常用的方法有：<font color="cornflowerblue">留出法</font>、<font color="cornflowerblue">交叉验证法</font>、<font color="cornflowerblue">自助法</font>，实验中优先选择&#x3D;&#x3D;交叉验证法&#x3D;&#x3D;。</p><h3 id="性能度量"><a href="#性能度量" class="headerlink" title="性能度量"></a>性能度量</h3><hr><h2 id="Main"><a href="#Main" class="headerlink" title="Main"></a>Main</h2><h3 id="划分数据集"><a href="#划分数据集" class="headerlink" title="划分数据集"></a>划分数据集</h3><p>选择10折交叉验证，</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>机器学习</tag>
+      
+      <tag>决策树</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>《你想活出怎样的人生》</title>
     <link href="/2024/04/05/%E3%80%8A%E4%BD%A0%E6%83%B3%E6%B4%BB%E5%87%BA%E6%80%8E%E6%A0%B7%E7%9A%84%E4%BA%BA%E7%94%9F%E3%80%8B/"/>
     <url>/2024/04/05/%E3%80%8A%E4%BD%A0%E6%83%B3%E6%B4%BB%E5%87%BA%E6%80%8E%E6%A0%B7%E7%9A%84%E4%BA%BA%E7%94%9F%E3%80%8B/</url>
