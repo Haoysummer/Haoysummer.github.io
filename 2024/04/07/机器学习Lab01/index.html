@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/puya.gif">
-  <link rel="icon" href="/img/puya.gif">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon_01.png">
+  <link rel="icon" href="/img/icon_01.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -23,14 +23,18 @@
 <meta property="og:site_name" content="SummerTime">
 <meta property="og:description" content="DataSetcar1000这是一个关于汽车测评的数据集，类别变量为汽车的测评，（unacc，ACC，good，vgood）分别代表（不可接受，可接受，好，非常好），而6个属性变量分别为「买入价」，「维护费」，「车门数」，「可容纳人数」，「后备箱大小」，「安全性」。值得一提的是6个属性变量全部是有序类别变量：  buying       v-high, high, med, low maint">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img%5Cpost_cover%5CML_Lab01_cover.jpg">
 <meta property="article:published_time" content="2024-04-07T02:08:13.000Z">
-<meta property="article:modified_time" content="2024-04-07T03:38:08.754Z">
+<meta property="article:modified_time" content="2024-04-08T10:24:04.206Z">
 <meta property="article:author" content="Kamille">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="决策树">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img%5Cpost_cover%5CML_Lab01_cover.jpg">
   
   
+  
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
   
   <title>机器学习Lab01 - SummerTime</title>
 
@@ -64,6 +68,10 @@
     <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
+
+
+  
+<link rel="stylesheet" href="/css/font.css">
 
 
 
@@ -221,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          268 字
+          729 字
         
       </span>
     
@@ -232,7 +240,7 @@
         
         
         
-          3 分钟
+          7 分钟
         
       </span>
     
@@ -290,6 +298,40 @@
 <h3 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h3><p>常用的方法有：<font color="cornflowerblue">留出法</font>、<font color="cornflowerblue">交叉验证法</font>、<font color="cornflowerblue">自助法</font>，实验中优先选择&#x3D;&#x3D;交叉验证法&#x3D;&#x3D;。</p>
 <h3 id="性能度量"><a href="#性能度量" class="headerlink" title="性能度量"></a>性能度量</h3><hr>
 <h2 id="Main"><a href="#Main" class="headerlink" title="Main"></a>Main</h2><h3 id="划分数据集"><a href="#划分数据集" class="headerlink" title="划分数据集"></a>划分数据集</h3><p>选择10折交叉验证，</p>
+<h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><p>将.txt文件格式的数据集文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入txt数据集，并制定列名</span><br>txtDF = pd.read_csv(<span class="hljs-string">&#x27;D:\\Summer\\HNU\\大三_下\\机器学习\\lab_01\\Lab01\\car1000\\car_1000.txt&#x27;</span>, header=<span class="hljs-literal">None</span>)  <br>columns = [<span class="hljs-string">&#x27;buying&#x27;</span>, <span class="hljs-string">&#x27;maint&#x27;</span>, <span class="hljs-string">&#x27;doors&#x27;</span>, <span class="hljs-string">&#x27;persons&#x27;</span>, <span class="hljs-string">&#x27;lug_boot&#x27;</span>, <span class="hljs-string">&#x27;safety&#x27;</span>, <span class="hljs-string">&#x27;outcome&#x27;</span>]  <br>txtDF.columns = columns  <br>txtDF.to_csv(<span class="hljs-string">&#x27;car_1000.csv&#x27;</span>, index=<span class="hljs-literal">False</span>)  <br><br>data = pd.read_csv(<span class="hljs-string">&#x27;car_1000.csv&#x27;</span>)<br><span class="hljs-comment">#print(data)</span><br><span class="hljs-comment"># 统计每个特征的取值情况作为全局变量</span><br>column_count = <span class="hljs-built_in">dict</span>([(ds, <span class="hljs-built_in">list</span>(pd.unique(data[ds]))) <span class="hljs-keyword">for</span> ds <span class="hljs-keyword">in</span> data.iloc[:, :-<span class="hljs-number">1</span>].columns])<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">column_count = <span class="hljs-built_in">dict</span>([(ds, <span class="hljs-built_in">list</span>(pd.unique(data[ds]))) <span class="hljs-keyword">for</span> ds <span class="hljs-keyword">in</span> data.iloc[:, :-<span class="hljs-number">1</span>].columns])<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>**<code>data.iloc[:, :-1].columns</code>**：<ul>
+<li><code>data</code> 是一个pandas DataFrame。</li>
+<li><code>iloc[:, :-1]</code> 选择DataFrame中的所有行（<code>:</code>）和除最后一列外的所有列（<code>:-1</code>）。也就是说，它选择了除最后一列之外的所有列。</li>
+<li><code>.columns</code> 获取这些选定列的列名，返回一个Index对象。</li>
+</ul>
+</li>
+<li>**<code>for ds in data.iloc[:, :-1].columns</code>**：<ul>
+<li>这是一个for循环，遍历除最后一列之外的所有列的列名。每次循环，<code>ds</code> 将被赋予一个列名。</li>
+</ul>
+</li>
+<li>**<code>pd.unique(data[ds])</code>**：<ul>
+<li>对于每个列名 <code>ds</code>，<code>data[ds]</code> 选择该列的数据。</li>
+<li><code>pd.unique()</code> 是一个pandas函数，用于获取该列的唯一值。</li>
+</ul>
+</li>
+<li>**<code>list(pd.unique(data[ds]))</code>**：<ul>
+<li>将 <code>pd.unique(data[ds])</code> 的结果转换为列表。尽管 <code>pd.unique()</code> 通常返回一个numpy数组，但这里将其转换为列表是为了确保它可以被直接用作字典的值。</li>
+</ul>
+</li>
+<li>**<code>dict([(ds, list(pd.unique(data[ds]))) for ds in data.iloc[:, :-1].columns])</code>**：<ul>
+<li>这是一个列表推导式，它生成一个包含元组的列表，每个元组的第一个元素是列名 <code>ds</code>，第二个元素是该列的唯一值列表。</li>
+<li><code>dict()</code> 将这个列表转换为字典。字典的键是列名，值是该列的唯一值列表。</li>
+</ul>
+</li>
+</ol>
+<p>最后，<code>column_count</code> 是一个字典，其键是DataFrame中除最后一列之外的所有列名，值是这些列中各自的唯一值列表。</p>
 
                 
               </div>
